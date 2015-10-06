@@ -7,37 +7,6 @@
  *
  */
 ?>
-<!--<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-        }
-    </style>
-</head>
-<body>
-
-<table>
-    <tr>
-        <th></th>
-        <tr></tr>
-        <td>Cell B</td>
-    </tr>
-</table>
-
-</body>
-<div id = "Table">
-    <div class = "row">
-        <div class = "Event"> EventId    EventName  EventVenue   EventTime   EventDescription   EventTag</div>
-        <!--<div class = "box">box2</div>
-        <div class = "box">box3</div>
-        <div class = "box">box4</div>
-        <div class ="clear"></div>
-    </div>
-</div>
-
-</html> -->
 
 <?php
 // Connects to your Database
@@ -78,13 +47,13 @@ if (isset($_POST['submit'])) {
         $_POST['pass'] = addslashes($_POST['pass']);
         $_POST['username'] = addslashes($_POST['username']);
     }
-    // now we insert it into the database
-    $insert = "INSERT INTO users (username, password)  VALUES ('".$_POST['username']."', '".$_POST['pass']."')";
+    // insert it into the database
+    $insert = "INSERT INTO users (username, password)  VALUES ('".$_POST['event_id']."', '".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."', '".$_POST['event_tag']."')";
     $add_member = mysql_query($insert);
 
     ?>
     <h1>Registered</h1>
-    <p>Thank you, you have registered - you may now login</a>.
+    <p>Thank you, you have registered the Events Succefully</a>.
     </p>
 
 
@@ -97,27 +66,31 @@ else
         <table border="5">
             <tr>
                 <th>Event ID:</th>
-                <td>  <input type="int" name="Event ID" maxlength="60">  </td>
+                <td>  <input type="int" name="event_id" maxlength="60">  </td>
             </tr>
             <tr>
                 <th>Event Name:</th>
-                <td>  <input type="text" name="Event Name" maxlength="30">  </td>
+                <td>  <input type="text" name="event_name" maxlength="30">  </td>
             </tr>
             <tr>
                 <th>Event Venue:</th>
-                <td>  <input type="text" name="Event Venue" maxlength="50">  </td>
+                <td>  <input type="text" name="event_venue" maxlength="50">  </td>
             </tr>
             <tr>
-                <th>Event Time:</th>
-                <td>  <input type="time" name="Event Time" maxlength="50">  </td>
+                <th>Event TypeID:</th>
+                <td>  <input type="int" name="event_typeID" maxlength="50">  </td>
             </tr>
             <tr>
                 <th>Event Description:</th>
-                <td>  <input type="text" name="Event Description" maxlength="100">  </td>
+                <td>  <input type="text" name="event_description" maxlength="100">  </td>
             </tr>
             <tr>
                 <th>Event Tag:</th>
-                <td>  <input type="text" name="Event Tag" maxlength="50">  </td>
+                <td>  <input type="text" name="event_tag" maxlength="50">  </td>
+            </tr>
+            <tr>
+                <th>Event Time:</th>
+                <td>  <input type=datetime name="event_time" maxlength="50">  </td>
             </tr>
 
             <tr>

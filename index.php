@@ -63,7 +63,7 @@ if(!$_POST['username'] | !$_POST['pass'])
             setcookie(ID_my_site, $_POST['username'], $hour);
             setcookie(Key_my_site, $_POST['pass'], $hour);
             //then redirect them to the members area
-            header("Location: members.php");
+            header("Location: table.php");
         }
     }
 }
