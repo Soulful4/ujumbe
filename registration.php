@@ -1,7 +1,6 @@
 <?php
 // Connects to your Database
-mysql_connect("localhost", "root", "Root123456") or die(mysql_error());
-mysql_select_db("ujumbe") or die(mysql_error());
+require('connect.php');
 //This code runs if the form has been submitted
 
 if (isset($_POST['submit'])) {
@@ -53,7 +52,11 @@ else
 {
     ?>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <table border="5">
+        <center>
+            <br>PERSON DETAILS </br>
+            <table border="100">
+        </center>
+        <table border="10">
             <tr>
                 <td>First Name:</td>
                 <td> <input type="Text"name ="fname" maxlenghth="60" </td>
@@ -69,7 +72,11 @@ else
             </tr>
             <tr>
                 <td>Usertype ID:</td>
-                <td> <input type="int"name ="usertype_id" maxlenghth="60" </td>
+                <td>                    <select name="usertype_id">
+                    <option value="1">Student</option>
+                    <option value="2">Staff</option>
+                    <option value="3">Admin</option
+                    </select></td>
             </tr>
             <tr>
                 <td>Password:</td>

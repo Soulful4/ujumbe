@@ -9,23 +9,19 @@
 ?>
 
 <?php
-// Connects to your Database
-mysql_connect("localhost", "root", "Root123456") or die(mysql_error());
-mysql_select_db("ujumbe") or die(mysql_error());
 //This code runs if the form has been submitted
-
 if (isset($_POST['submit'])) {
 //This makes sure they did not leave any fields blank
-    if (!$_POST['username'] | !$_POST['pass'] | !$_POST['pass2'] )
+    if (!$_POST['event_id'] | !$_POST['event_venue'] | !$_POST['event_typeID'] )
     {
         die('You did not complete all of the required fields');
     }
 // checks if the username is in use
     if (!get_magic_quotes_gpc())
     {
-        $_POST['username'] = addslashes($_POST['username']);
+        $_POST['event_id'] = addslashes($_POST['event_id']);
     }
-    $usercheck = $_POST['username'];
+    $usercheck = $_POST['event_id'];
 
     $check = mysql_query("SELECT username FROM users WHERE username = '$usercheck'")   or die(mysql_error());
     $check2 = mysql_num_rows($check);
@@ -48,7 +44,7 @@ if (isset($_POST['submit'])) {
         $_POST['username'] = addslashes($_POST['username']);
     }
     // insert it into the database
-    $insert = "INSERT INTO users (username, password)  VALUES ('".$_POST['event_id']."', '".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."', '".$_POST['event_tag']."')";
+    $insert = "INSERT INTO users (event_id, event_venue, event_typeID, event_description, event_tag, event_time)  VALUES ('".$_POST['event_id']."', '".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."', '".$_POST['event_tag']."')";
     $add_member = mysql_query($insert);
 
     ?>
@@ -63,6 +59,10 @@ else
 {
     ?>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <center>
+            <br>EVENT DETAILS </br>
+            <table border="100">
+        </center>
         <table border="5">
             <tr>
                 <th>Event ID:</th>

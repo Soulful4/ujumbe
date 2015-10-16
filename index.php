@@ -1,10 +1,6 @@
 <?php
-// Connects to your Database
-$mysql_host = "localhost";
-$mysql_user = "root";
-$mysql_pass = "Root123456";
-mysql_connect("localhost", "root", "Root123456") or die(mysql_error());
-mysql_select_db("ujumbe") or die(mysql_error());
+//connects to your Database
+require('connect.php');
 //Checks if there is a login cookie
 if(isset($_COOKIE['ID_my_site']))
 //if there is, it logs you in and directes you to the members page
