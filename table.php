@@ -41,45 +41,34 @@
 
 <?php
 // Connects to your Database
-mysql_connect("localhost", "root", "Root123456") or die(mysql_error());
+mysql_connect("localhost", "root", "") or die(mysql_error());
 mysql_select_db("ujumbe") or die(mysql_error());
 //This code runs if the form has been submitted
 
 if (isset($_POST['submit'])) {
 //This makes sure they did not leave any fields blank
-    if (!$_POST['username'] | !$_POST['pass'] | !$_POST['pass2'] )
+    if (!$_POST['Event ID'] | !$_POST['Event name'] | !$_POST['Event faculty'] )
     {
         die('You did not complete all of the required fields');
     }
 // checks if the username is in use
     if (!get_magic_quotes_gpc())
     {
-        $_POST['username'] = addslashes($_POST['username']);
+        $_POST['Event name'] = addslashes($_POST['Event name']);
     }
-    $usercheck = $_POST['username'];
+    $usercheck = $_POST['Event name'];
 
-    $check = mysql_query("SELECT username FROM users WHERE username = '$usercheck'")   or die(mysql_error());
+    $check = mysql_query("SELECT event_name FROM events WHERE event_name = '$eventscheck'")   or die(mysql_error());
     $check2 = mysql_num_rows($check);
 
     //if the name exists it gives an error
     if ($check2 != 0)
     {
-        die('Sorry, the username '.$_POST['username'].' is already in use.');
+        die('Sorry, the event_name '.$_POST['event_name'].' is already in use.');
     }
-    //  this makes sure both passwords entered match
-    if ($_POST['pass'] != $_POST['pass2'])
-    {
-        die('Your passwords did not match. ');
-    }
-    // here we encrypt the password and add slashes if needed
-    $_POST['pass'] = md5($_POST['pass']);
-    if (!get_magic_quotes_gpc())
-    {
-        $_POST['pass'] = addslashes($_POST['pass']);
-        $_POST['username'] = addslashes($_POST['username']);
-    }
+
     // now we insert it into the database
-    $insert = "INSERT INTO users (username, password)  VALUES ('".$_POST['username']."', '".$_POST['pass']."')";
+    $insert = "INSERT INTO events (event_name)  VALUES ('".$_POST['event_name']."', )";
     $add_member = mysql_query($insert);
 
     ?>
@@ -104,12 +93,27 @@ else
                 <td>  <input type="text" name="Event Name" maxlength="30">  </td>
             </tr>
             <tr>
+            <th> Event TypeID:</th>
+                <td> <input type="text" name="Event TypeID" maxlength="30"> </td>
+            </tr>
+                <tr>
+                    <th>Event Faculty:</th>
+                 <td > <input type="option" name="Event Faculty" maxlength="50">
+                    <select name="Faculty">
+                        <option value="FIT"></option>
+                        <option value="SMC"></option>
+                        <option value="SFAE"></option>
+                        <option value="LAW"></option>
+                    </select> </td>
+
+            </tr>
+            <tr>
                 <th>Event Venue:</th>
                 <td>  <input type="text" name="Event Venue" maxlength="50">  </td>
             </tr>
             <tr>
                 <th>Event Time:</th>
-                <td>  <input type="time" name="Event Time" maxlength="50">  </td>
+                <td>  <input type="datetime" name="Event Time" maxlength="30">  </td>
             </tr>
             <tr>
                 <th>Event Description:</th>

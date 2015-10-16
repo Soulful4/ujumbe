@@ -1,7 +1,6 @@
 <?php
 // Connects to your Database
-mysql_connect("localhost", "root", "Root123456") or die(mysql_error());
-mysql_select_db("ujumbe") or die(mysql_error());
+require('connect.php');
 //This code runs if the form has been submitted
 
 if (isset($_POST['submit'])) {
@@ -38,7 +37,8 @@ if (!get_magic_quotes_gpc())
         $_POST['username'] = addslashes($_POST['username']);
     }
     // now we insert it into the database
-    $insert = "INSERT INTO users ( username, password, fname, lname, usertype_id)  VALUES ('".$_POST['username']."', '".$_POST['pass']."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";
+    echo "INSERT INTO users ( username, password, fname, lname, usertype_id ) VALUES ('".$_POST['username']."', '".$_POST['pass']."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";exit;
+    $insert = "INSERT INTO users ( username, password, fname, lname, usertype_id ) VALUES ('".$_POST['username']."', '".$_POST['pass']."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";
     $add_member = mysql_query($insert);
 
     ?>
@@ -55,28 +55,36 @@ else
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <table border="5">
             <tr>
-                <td>First Name:</td>
+                <th>First Name:</th>
                 <td> <input type="Text"name ="fname" maxlenghth="60" </td>
             </tr>
             <tr>
-                <td>Last Name:</td>
+                <th>Last Name:</th>
                 <td> <input type="Text"name ="lname" maxlenghth="60" </td>
             </tr>
 
             <tr>
-                <td>Username:</td>
+                <th>Username:</th>
                 <td>  <input type="text" name="username" maxlength="60">  </td>
             </tr>
             <tr>
-                <td>Usertype ID:</td>
-                <td> <input type="int"name ="usertype_id" maxlenghth="60" </td>
+                <th>Usertype:</th>
+                <td> <input type="option" name ="Usertype" maxlenghth="20" </td>
+
+                <select name="usertype_id">
+                    <option value="Student" </option>
+                    <option value="Administrator" </option>
+                    <option value="Staff" </option>
+                </select>
+
             </tr>
-            <tr>
-                <td>Password:</td>
+
+        <tr>
+                <th>Password:</th>
                 <td>  <input type="password" name="pass" maxlength="10">  </td>
             </tr>
             <tr>
-                <td>Confirm Password:</td>
+                <th>Confirm Password:</th>
                 <td>  <input type="password" name="pass2" maxlength="10">  </td>
             </tr>
             <tr>
