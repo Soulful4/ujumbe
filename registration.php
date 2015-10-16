@@ -29,6 +29,7 @@ if (!get_magic_quotes_gpc())
     {
         die('Your passwords did not match. ');
     }
+    //added a comment
     // here we encrypt the password and add slashes if needed
     $_POST['pass'] = md5($_POST['pass']);
     if (!get_magic_quotes_gpc())
