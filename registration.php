@@ -1,6 +1,6 @@
 <?php
 // Connects to your Database
-mysql_connect("localhost", "root", "Root123456") or die(mysql_error());
+mysql_connect("localhost", "root", "ichigoojenge") or die(mysql_error());
 mysql_select_db("ujumbe") or die(mysql_error());
 //This code runs if the form has been submitted
 
@@ -67,6 +67,10 @@ else
                 <td>Username:</td>
                 <td>  <input type="text" name="username" maxlength="60">  </td>
             </tr>
+
+            <?php
+            $usertypes = "";
+            ?>
             <tr>
                 <td>Usertype ID:</td>
                 <td> <input type="int"name ="usertype_id" maxlenghth="60" </td>
