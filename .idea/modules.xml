@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ujumbe.iml" filepath="$PROJECT_DIR$/.idea/ujumbe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ujumbe.iml" filepath="$PROJECT_DIR$/ujumbe.iml" />
     </modules>
   </component>
 </project>

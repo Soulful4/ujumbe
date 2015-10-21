@@ -1,6 +1,10 @@
 <?php
-//connects to your Database
-require('connect.php');
+// Connects to your Database
+$mysql_host = "localhost";
+$mysql_user = "root";
+$mysql_pass = "ichigoojenge";
+mysql_connect("localhost", "root", "ichigoojenge") or die(mysql_error());
+mysql_select_db("ujumbe") or die(mysql_error());
 //Checks if there is a login cookie
 if(isset($_COOKIE['ID_my_site']))
 //if there is, it logs you in and directes you to the members page
@@ -43,6 +47,8 @@ if(!$_POST['username'] | !$_POST['pass'])
     }
     while($info = mysql_fetch_array( $check ))
     {
+        var_dump($check);
+        exit;
         $_POST['pass'] = stripslashes($_POST['pass']);
         $info['password'] = stripslashes($info['password']);
         $_POST['pass'] = md5($_POST['pass']);
@@ -55,10 +61,11 @@ if(!$_POST['username'] | !$_POST['pass'])
         {
         // if login is ok then we add a cookie
         $_POST['username'] = stripslashes($_POST['username']);
+
             $hour = time() + 3600;
-            setcookie(ID_my_site, $_POST['username'], $hour);
-            setcookie(Key_my_site, $_POST['pass'], $hour);
-            //then redirect them to the members area
+//            setcookie(ID_my_site, $_POST['username'], $hour);
+//            setcookie(Key_my_site, $_POST['pass'], $hour);
+//            //then redirect them to the members area
             header("Location: table.php");
         }
     }
