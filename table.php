@@ -16,40 +16,29 @@ if (isset($_POST['submit'])) {
     {
         die('You did not complete all of the required fields');
     }
-// checks if the username is in use
+// checks if the event name is in use
     if (!get_magic_quotes_gpc())
     {
         $_POST['event_id'] = addslashes($_POST['event_id']);
     }
     $usercheck = $_POST['event_id'];
 
-    $check = mysql_query("SELECT username FROM users WHERE username = '$usercheck'")   or die(mysql_error());
+    $check = mysql_query("SELECT event_id FROM events WHERE event_id = '$usercheck'")   or die(mysql_error());
     $check2 = mysql_num_rows($check);
 
     //if the name exists it gives an error
     if ($check2 != 0)
     {
-        die('Sorry, the username '.$_POST['username'].' is already in use.');
+        die('Sorry, the event id '.$_POST['event_id'].' is already in use.');
     }
-    //  this makes sure both passwords entered match
-    if ($_POST['pass'] != $_POST['pass2'])
-    {
-        die('Your passwords did not match. ');
-    }
-    // here we encrypt the password and add slashes if needed
-    $_POST['pass'] = md5($_POST['pass']);
-    if (!get_magic_quotes_gpc())
-    {
-        $_POST['pass'] = addslashes($_POST['pass']);
-        $_POST['username'] = addslashes($_POST['username']);
-    }
+
     // insert it into the database
     $insert = "INSERT INTO users (event_id, event_venue, event_typeID, event_description, event_tag, event_time)  VALUES ('".$_POST['event_id']."', '".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."', '".$_POST['event_tag']."')";
     $add_member = mysql_query($insert);
 
     ?>
     <h1>Registered</h1>
-    <p>Thank you, you have registered the Events Succefully</a>.
+    <p>Thank you, you have registered the Events Succefully </a>.
     </p>
 
 
