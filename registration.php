@@ -1,7 +1,6 @@
 <?php
 // Connects to your Database
-mysql_connect("localhost", "root", "ichigoojenge") or die(mysql_error());
-mysql_select_db("ujumbe") or die(mysql_error());
+require ('connect.php');
 //This code runs if the form has been submitted
 
 if (isset($_POST['submit'])) {
@@ -39,6 +38,7 @@ if (!get_magic_quotes_gpc())
     }
     // now we insert it into the database
     $insert = "INSERT INTO users ( username, password, fname, lname, usertype_id)  VALUES ('".$_POST['username']."', '".$_POST['pass']."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";
+//    echo $insert;exit;
     $add_member = mysql_query($insert);
 
     ?>

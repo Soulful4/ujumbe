@@ -1,14 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 10/3/2015
- * Time: 2:28 PM
- *
- */
-?>
 
 <?php
+//connects to the database
+require('connect.php');
 //This code runs if the form has been submitted
 if (isset($_POST['submit'])) {
 //This makes sure they did not leave any fields blank
@@ -33,12 +26,12 @@ if (isset($_POST['submit'])) {
     }
 
     // insert it into the database
-    $insert = "INSERT INTO users (event_id, event_venue, event_typeID, event_description, event_tag, event_time)  VALUES ('".$_POST['event_id']."', '".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."', '".$_POST['event_tag']."')";
+    $insert = "INSERT INTO events (event_id, event_venue, event_typeID, event_description,  event_Date&Time)  VALUES ('".$_POST['event_id']."', '".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_Date&Time']."', '".$_POST['event_description']."', '"."')";
     $add_member = mysql_query($insert);
 
     ?>
     <h1>Registered</h1>
-    <p>Thank you, you have registered the Events Succefully </a>.
+    <p>Thank you, you have registered the Events Successfully </a>.
     </p>
 
 
@@ -73,12 +66,9 @@ else
                 <th>Event Description:</th>
                 <td>  <input type="text" name="event_description" maxlength="100">  </td>
             </tr>
+
             <tr>
-                <th>Event Tag:</th>
-                <td>  <input type="text" name="event_tag" maxlength="50">  </td>
-            </tr>
-            <tr>
-                <th>Event Time:</th>
+                <th>Event Date & Time:</th>
                 <td>  <input type=datetime name="event_time" maxlength="50">  </td>
             </tr>
 
