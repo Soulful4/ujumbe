@@ -43,7 +43,7 @@ if (mysqli_connect_errno())
 
     endforeach;
     ?>
-    
+
 
     </tbody>
 </table>

@@ -10,9 +10,14 @@
 
 <?php
 // Connects to your Database
-mysql_connect("localhost", "root", "Root123456") or die(mysql_error());
-mysql_select_db("ujumbe") or die(mysql_error());
-//This code runs if the form has been submitted
+$con=mysqli_connect("localhost","root","ichigoojenge","ujumbe");
+// Check connection
+if (mysqli_connect_errno())
+{
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+
 
 if (isset($_POST['submit'])) {
 //This makes sure they did not leave any fields blank
@@ -27,7 +32,7 @@ if (isset($_POST['submit'])) {
     }
     $usercheck = $_POST['username'];
 
-    $check = mysql_query("SELECT username FROM users WHERE username = '$usercheck'")   or die(mysql_error());
+    $check = mysqli_query($con,"SELECT username FROM users WHERE username = '$usercheck'");
     $check2 = mysql_num_rows($check);
 
     //if the name exists it gives an error
@@ -49,7 +54,7 @@ if (isset($_POST['submit'])) {
     }
     // insert it into the database
     $insert = "INSERT INTO users (username, password)  VALUES ('".$_POST['event_id']."', '".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."', '".$_POST['event_tag']."')";
-    $add_member = mysql_query($insert);
+    $add_member = mysqli_query($con, $insert);
 
     ?>
     <h1>Registered</h1>
@@ -62,40 +67,60 @@ if (isset($_POST['submit'])) {
 else
 {
     ?>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <table border="5">
-            <tr>
-                <th>Event ID:</th>
-                <td>  <input type="int" name="event_id" maxlength="60">  </td>
-            </tr>
-            <tr>
-                <th>Event Name:</th>
-                <td>  <input type="text" name="event_name" maxlength="30">  </td>
-            </tr>
-            <tr>
-                <th>Event Venue:</th>
-                <td>  <input type="text" name="event_venue" maxlength="50">  </td>
-            </tr>
-            <tr>
-                <th>Event TypeID:</th>
-                <td>  <input type="int" name="event_typeID" maxlength="50">  </td>
-            </tr>
-            <tr>
-                <th>Event Description:</th>
-                <td>  <input type="text" name="event_description" maxlength="100">  </td>
-            </tr>
-            <tr>
-                <th>Event Tag:</th>
-                <td>  <input type="text" name="event_tag" maxlength="50">  </td>
-            </tr>
-            <tr>
-                <th>Event Time:</th>
-                <td>  <input type=datetime name="event_time" maxlength="50">  </td>
-            </tr>
+    <head>
+        <!--Bootstrap Files-->
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
-            <tr>
-                <th colspan=2><input type="submit" name="submit"  value="Register"></th></tr>
-        </table>
-    </form>
+    </head>
+    <body>
+        <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+
+
+            <div class="form-group">
+                <label for="EventID" class="col-sm-2 control-label">Event ID</label>
+                <div class="col-sm-4">
+                    <input type="int" class ="form-control" name="event_id" maxlength="60">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="EventName" class="col-sm-2 control-label">Event Name</label>
+                <div class="col-sm-4">
+                    <input type="text" class ="form-control" name="event_name" maxlength="60">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="EventVenue" class="col-sm-2 control-label">Event Venue</label>
+                <div class="col-sm-4">
+                    <input type="text" class ="form-control" name="event_venue" maxlength="60">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="EventTypeID" class="col-sm-2 control-label">Event Type ID</label>
+                <div class="col-sm-4">
+                    <input type="int" class ="form-control" name="event_typeID" maxlength="60">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="EventDescription" class="col-sm-2 control-label">Event Description</label>
+                <div class="col-sm-4">
+                    <input type="int" class ="form-control" name="event_description" maxlength="60">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="EventDate" class="col-sm-2 control-label">Event Date</label>
+                <div class="col-sm-4">
+                    <input type="int" class ="form-control" name="event_time" maxlength="60">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Register</button>
+                </div>
+            </div>
+
+        </form>
+    </body>
 <?php  } ?>
 
