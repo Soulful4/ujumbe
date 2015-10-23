@@ -1,19 +1,18 @@
 <?php
+
+require('connect.php');
 // Connects to your Database
-$mysql_host = "localhost";
-$mysql_user = "root";
-$mysql_pass = "ichigoojenge";
-mysql_connect("localhost", "root", "ichigoojenge") or die(mysql_error());
-mysql_select_db("ujumbe") or die(mysql_error());
+
 //Checks if there is a login cookie
 if(isset($_COOKIE['ID_my_site']))
 //if there is, it logs you in and directes you to the members page
 {
 
-          $username = $_COOKIE['ID_my_site'];
+    $username = $_COOKIE['ID_my_site'];
     $pass = $_COOKIE['Key_my_site'];
-    $check = mysql_query("SELECT * FROM users WHERE username = '$username'")or die(mysql_error());
-    while($info = mysql_fetch_array( $check ))
+    //$check = mysqli_query($con,"SELECT username FROM users WHERE username = '$usercheck'");
+    $check = mysqli_query($con,"SELECT * FROM users WHERE username = '$username'");
+    while($info = mysqli_fetch_array( $check ))
     {
         if ($pass != $info['password'])
         {
@@ -38,14 +37,14 @@ if(!$_POST['username'] | !$_POST['pass'])
 {
     $_POST['email'] = addslashes($_POST['email']);
 }*/
-    $check = mysql_query("SELECT * FROM users WHERE username = '".$_POST['username']."'")or die(mysql_error());
+    $check = mysqli_query($con,"SELECT * FROM users WHERE username = '".$_POST['username']."'");
     //Gives error if user dosen't exist
     $check2 = mysql_num_rows($check);
     if ($check2 == 0)
     {
         die('That user does not exist in our database. <a href=registration.php>Click Here to Register</a>');
     }
-    while($info = mysql_fetch_array( $check ))
+    while($info = mysqli_fetch_array( $check ))
     {
         var_dump($check);
         exit;

@@ -1,23 +1,24 @@
 <?php
 // Connects to your Database
- require ('connect.php');
+
+require('connect.php');
 
 if (isset($_POST['submit'])) {
-    echo "it works";exit;
-    $eventname = $_POST['event_name'];
-    $check = mysqli_query($con,"SELECT event_name FROM events WHERE event_name = '$eventname'");
+
+    $usercheck = $_POST['event_name'];
+
+    $check = mysqli_query($con,"SELECT username FROM events WHERE username = '$usercheck'");
     $check2 = mysqli_num_rows($check);
 
     //if the name exists it gives an error
     if ($check2 != 0)
     {
-        die('Sorry, the event '.$_POST['event_name'].' is already in use.');
+        die('Sorry, the Event Name '.$_POST['event_name'].' is already in use.');
     }
 
+
     // insert it into the database
-    $insert = "INSERT INTO events (event_venue, event_typeID, event_time, event_description, event_name)  VALUES ('".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."', '".$_POST['event_tag']."', '".$_POST['event_id']."', '".$_POST['event_name']."')";
-    echo $insert;
-    exit;
+    $insert = "INSERT INTO events (event_venue,event_typeID,event_time,event_description)  VALUES ('".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."')";
     $add_member = mysqli_query($con, $insert);
 
     ?>
@@ -38,9 +39,7 @@ else
     </head>
     <body>
         <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-
-
-<!--             <div class="form-group">-->
+<!--            <div class="form-group">-->
 <!--                <label for="EventID" class="col-sm-2 control-label">Event ID</label>-->
 <!--                <div class="col-sm-4">-->
 <!--                    <input type="int" class ="form-control" name="event_id" maxlength="60">-->
@@ -72,7 +71,7 @@ else
                 </div>
             </div>
             <div class="form-group">
-                <label for="EventDate" class="col-sm-2 control-label">Event Date & Time</label>
+                <label for="EventDate" class="col-sm-2 control-label">Event Date</label>
                 <div class="col-sm-4">
                     <input type="int" class ="form-control" name="event_time" maxlength="60">
                 </div>
@@ -80,7 +79,7 @@ else
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Register</button>
+                    <button type="submit" name="submit" class="btn btn-default">Register</button>
                 </div>
             </div>
 
