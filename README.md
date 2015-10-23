@@ -1,2 +1,0 @@
-# ujumbe
-Ujumbe App

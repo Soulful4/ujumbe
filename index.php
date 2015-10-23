@@ -4,7 +4,7 @@
 require('connect.php');
 //Checks if there is a login cookie
 if(isset($_COOKIE['ID_my_site']))
-//if there is, it logs you in and directes you to the members page
+//if there is, it logs you in and directs you to the members page
 {
 
           $username = $_COOKIE['ID_my_site'];
@@ -36,7 +36,7 @@ if(!$_POST['username'] | !$_POST['pass'])
     $_POST['email'] = addslashes($_POST['email']);
 }*/
     $check = mysql_query("SELECT * FROM users WHERE username = '".$_POST['username']."'")or die(mysql_error());
-    //Gives error if user dosen't exist
+    //Gives error if user doesn't exist
     $check2 = mysql_num_rows($check);
     if ($check2 == 0)
     {
@@ -86,3 +86,5 @@ else
         </table>
     </form>
 <?php   }     ?>
+
+
