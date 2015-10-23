@@ -1,8 +1,6 @@
 <?php
 // Connects to your Database
-mysql_connect("localhost", "root", "ichigoojenge") or die(mysql_error());
-mysql_select_db("ujumbe") or die(mysql_error());
-//This code runs if the form has been submitted
+require('connect.php');
 
 if (isset($_POST['submit'])) {
 //This makes sure they did not leave any fields blank
@@ -17,8 +15,8 @@ if (!get_magic_quotes_gpc())
 }
     $usercheck = $_POST['username'];
 
-    $check = mysql_query("SELECT username FROM users WHERE username = '$usercheck'")   or die(mysql_error());
-    $check2 = mysql_num_rows($check);
+    $check = mysqli_query($con,"SELECT username FROM users WHERE username = '$usercheck'");
+    $check2 = mysqli_num_rows($check);
 
     //if the name exists it gives an error
     if ($check2 != 0)
@@ -39,7 +37,7 @@ if (!get_magic_quotes_gpc())
     }
     // now we insert it into the database
     $insert = "INSERT INTO users ( username, password, fname, lname, usertype_id)  VALUES ('".$_POST['username']."', '".$_POST['pass']."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";
-    $add_member = mysql_query($insert);
+    $add_member = mysqli_query($con,$insert);
 
     ?>
     <h1>Registered</h1>
@@ -52,39 +50,48 @@ if (!get_magic_quotes_gpc())
 else
 {
     ?>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <table border="5">
-            <tr>
-                <td>First Name:</td>
-                <td> <input type="Text"name ="fname" maxlenghth="60" </td>
-            </tr>
-            <tr>
-                <td>Last Name:</td>
-                <td> <input type="Text"name ="lname" maxlenghth="60" </td>
-            </tr>
+    <head>
+        <!--Bootstrap Files-->
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
-            <tr>
-                <td>Username:</td>
-                <td>  <input type="text" name="username" maxlength="60">  </td>
-            </tr>
+    </head>
+    <body>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <table border="5">
+                <tr>
+                    <td>First Name:</td>
+                    <td> <input type="Text"name ="fname" maxlenghth="60" </td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td> <input type="Text"name ="lname" maxlenghth="60" </td>
+                </tr>
 
-            <?php
-            $usertypes = "";
-            ?>
-            <tr>
-                <td>Usertype ID:</td>
-                <td> <input type="int"name ="usertype_id" maxlenghth="60" </td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td>  <input type="password" name="pass" maxlength="10">  </td>
-            </tr>
-            <tr>
-                <td>Confirm Password:</td>
-                <td>  <input type="password" name="pass2" maxlength="10">  </td>
-            </tr>
-            <tr>
-                <th colspan=2><input type="submit" name="submit"  value="Register"></th></tr>
-        </table>
-    </form>
+                <tr>
+                    <td>Username:</td>
+                    <td>  <input type="text" name="username" maxlength="60">  </td>
+                </tr>
+
+                <?php
+                $usertypes = "";
+                ?>
+                <tr>
+                    <td>Usertype ID:</td>
+                    <td> <input type="int"name ="usertype_id" maxlenghth="60" </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>  <input type="password" name="pass" maxlength="10">  </td>
+                </tr>
+                <tr>
+                    <td>Confirm Password:</td>
+                    <td>  <input type="password" name="pass2" maxlength="10">  </td>
+                </tr>
+                <tr>
+                    <th colspan=2><input type="submit" name="submit"  value="Register"></th></tr>
+            </table>
+        </form>
+
+    </body>
+
 <?php  } ?>
