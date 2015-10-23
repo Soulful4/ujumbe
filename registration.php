@@ -1,6 +1,7 @@
 <?php
 // Connects to your Database
-require('connect.php');
+mysql_connect("localhost", "root", "ichigoojenge") or die(mysql_error());
+mysql_select_db("ujumbe") or die(mysql_error());
 //This code runs if the form has been submitted
 
 if (isset($_POST['submit'])) {
@@ -29,7 +30,6 @@ if (!get_magic_quotes_gpc())
     {
         die('Your passwords did not match. ');
     }
-    //added a comment
     // here we encrypt the password and add slashes if needed
     $_POST['pass'] = md5($_POST['pass']);
     if (!get_magic_quotes_gpc())
@@ -38,8 +38,7 @@ if (!get_magic_quotes_gpc())
         $_POST['username'] = addslashes($_POST['username']);
     }
     // now we insert it into the database
-    echo "INSERT INTO users ( username, password, fname, lname, usertype_id ) VALUES ('".$_POST['username']."', '".$_POST['pass']."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";exit;
-    $insert = "INSERT INTO users ( username, password, fname, lname, usertype_id ) VALUES ('".$_POST['username']."', '".$_POST['pass']."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";
+    $insert = "INSERT INTO users ( username, password, fname, lname, usertype_id)  VALUES ('".$_POST['username']."', '".$_POST['pass']."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";
     $add_member = mysql_query($insert);
 
     ?>
@@ -56,36 +55,32 @@ else
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <table border="5">
             <tr>
-                <th>First Name:</th>
+                <td>First Name:</td>
                 <td> <input type="Text"name ="fname" maxlenghth="60" </td>
             </tr>
             <tr>
-                <th>Last Name:</th>
+                <td>Last Name:</td>
                 <td> <input type="Text"name ="lname" maxlenghth="60" </td>
             </tr>
 
             <tr>
-                <th>Username:</th>
+                <td>Username:</td>
                 <td>  <input type="text" name="username" maxlength="60">  </td>
             </tr>
+
+            <?php
+            $usertypes = "";
+            ?>
             <tr>
-                <th>Usertype:</th>
-                <td> <input type="option" name ="Usertype" maxlenghth="20" </td>
-
-                <select name="usertype_id">
-                    <option value="Student" </option>
-                    <option value="Administrator" </option>
-                    <option value="Staff" </option>
-                </select>
-
+                <td>Usertype ID:</td>
+                <td> <input type="int"name ="usertype_id" maxlenghth="60" </td>
             </tr>
-
-        <tr>
-                <th>Password:</th>
+            <tr>
+                <td>Password:</td>
                 <td>  <input type="password" name="pass" maxlength="10">  </td>
             </tr>
             <tr>
-                <th>Confirm Password:</th>
+                <td>Confirm Password:</td>
                 <td>  <input type="password" name="pass2" maxlength="10">  </td>
             </tr>
             <tr>
