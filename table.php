@@ -1,64 +1,28 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 10/3/2015
- * Time: 2:28 PM
- *
- */
-?>
-
-<?php
 // Connects to your Database
-$con=mysqli_connect("localhost","root","ichigoojenge","ujumbe");
-// Check connection
-if (mysqli_connect_errno())
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
-
+ require ('connect.php');
 
 if (isset($_POST['submit'])) {
-//This makes sure they did not leave any fields blank
-    if (!$_POST['username'] | !$_POST['pass'] | !$_POST['pass2'] )
-    {
-        die('You did not complete all of the required fields');
-    }
-// checks if the username is in use
-    if (!get_magic_quotes_gpc())
-    {
-        $_POST['username'] = addslashes($_POST['username']);
-    }
-    $usercheck = $_POST['username'];
-
-    $check = mysqli_query($con,"SELECT username FROM users WHERE username = '$usercheck'");
-    $check2 = mysql_num_rows($check);
+    echo "it works";exit;
+    $eventname = $_POST['event_name'];
+    $check = mysqli_query($con,"SELECT event_name FROM events WHERE event_name = '$eventname'");
+    $check2 = mysqli_num_rows($check);
 
     //if the name exists it gives an error
     if ($check2 != 0)
     {
-        die('Sorry, the username '.$_POST['username'].' is already in use.');
+        die('Sorry, the event '.$_POST['event_name'].' is already in use.');
     }
-    //  this makes sure both passwords entered match
-    if ($_POST['pass'] != $_POST['pass2'])
-    {
-        die('Your passwords did not match. ');
-    }
-    // here we encrypt the password and add slashes if needed
-    $_POST['pass'] = md5($_POST['pass']);
-    if (!get_magic_quotes_gpc())
-    {
-        $_POST['pass'] = addslashes($_POST['pass']);
-        $_POST['username'] = addslashes($_POST['username']);
-    }
+
     // insert it into the database
-    $insert = "INSERT INTO users (username, password)  VALUES ('".$_POST['event_id']."', '".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."', '".$_POST['event_tag']."')";
+    $insert = "INSERT INTO events (event_venue, event_typeID, event_time, event_description, event_name)  VALUES ('".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."', '".$_POST['event_tag']."', '".$_POST['event_id']."', '".$_POST['event_name']."')";
+    echo $insert;
+    exit;
     $add_member = mysqli_query($con, $insert);
 
     ?>
     <h1>Registered</h1>
-    <p>Thank you, you have registered the Events Succefully</a>.
+    <p>Thank you, you have registered the Events Successfully</a>.
     </p>
 
 
@@ -76,12 +40,12 @@ else
         <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
 
-            <div class="form-group">
-                <label for="EventID" class="col-sm-2 control-label">Event ID</label>
-                <div class="col-sm-4">
-                    <input type="int" class ="form-control" name="event_id" maxlength="60">
-                </div>
-            </div>
+<!--             <div class="form-group">-->
+<!--                <label for="EventID" class="col-sm-2 control-label">Event ID</label>-->
+<!--                <div class="col-sm-4">-->
+<!--                    <input type="int" class ="form-control" name="event_id" maxlength="60">-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="form-group">
                 <label for="EventName" class="col-sm-2 control-label">Event Name</label>
                 <div class="col-sm-4">
@@ -108,7 +72,7 @@ else
                 </div>
             </div>
             <div class="form-group">
-                <label for="EventDate" class="col-sm-2 control-label">Event Date</label>
+                <label for="EventDate" class="col-sm-2 control-label">Event Date & Time</label>
                 <div class="col-sm-4">
                     <input type="int" class ="form-control" name="event_time" maxlength="60">
                 </div>
