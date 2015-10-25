@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
 
     $usercheck = $_POST['event_name'];
 
-    $check = mysqli_query($con,"SELECT username FROM events WHERE username = '$usercheck'");
+    $check = mysqli_query($con,"SELECT event_name FROM events WHERE event_name = '$usercheck'");
     $check2 = mysqli_num_rows($check);
 
     //if the name exists it gives an error
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
 
 
     // insert it into the database
-    $insert = "INSERT INTO events (event_venue,event_typeID,event_time,event_description)  VALUES ('".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."')";
+    $insert = "INSERT INTO events (event_name,event_venue,event_typeID,event_time,event_description)  VALUES ('".$_POST['event_name']."','".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."')";
     $add_member = mysqli_query($con, $insert);
 
     ?>

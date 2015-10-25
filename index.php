@@ -1,28 +1,7 @@
 <?php
-
-require('connect.php');
 // Connects to your Database
+require('connect.php');
 
-//Checks if there is a login cookie
-if(isset($_COOKIE['ID_my_site']))
-//if there is, it logs you in and directes you to the members page
-{
-
-    $username = $_COOKIE['ID_my_site'];
-    $pass = $_COOKIE['Key_my_site'];
-    //$check = mysqli_query($con,"SELECT username FROM users WHERE username = '$usercheck'");
-    $check = mysqli_query($con,"SELECT * FROM users WHERE username = '$username'");
-    while($info = mysqli_fetch_array( $check ))
-    {
-        if ($pass != $info['password'])
-        {
-        }
-        else
-        {
-            header("Location: members.php");
-        }
-    }
-}
 //if the login form is submitted
 if (isset($_POST['submit']))
 {
@@ -39,7 +18,7 @@ if(!$_POST['username'] | !$_POST['pass'])
 }*/
     $check = mysqli_query($con,"SELECT * FROM users WHERE username = '".$_POST['username']."'");
     //Gives error if user dosen't exist
-    $check2 = mysql_num_rows($check);
+    $check2 = mysqli_num_rows($check);
     if ($check2 == 0)
     {
         die('That user does not exist in our database. <a href=registration.php>Click Here to Register</a>');

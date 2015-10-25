@@ -41,7 +41,7 @@ if (!get_magic_quotes_gpc())
 
     ?>
     <h1>Registered</h1>
-    <p>Thank you, you have registered - you may now login</a>.
+    <p>Thank you, you have registered -<a href =  index.php> you may now login</a>.
     </p>
 
 
