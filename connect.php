@@ -1,8 +1,7 @@
 <?php
-$mysql_host = "localhost";
-$mysql_user = "root";
-$mysql_pass = "";
-mysqli_connect("localhost", "root", "","ujumbe");
-
-
-?>
+$con=mysqli_connect("localhost","root","ichigoojenge","ujumbe");
+// Check connection
+if (mysqli_connect_errno())
+{
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
