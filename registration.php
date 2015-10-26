@@ -1,7 +1,6 @@
 <?php
-// Connects to your Database
-mysql_connect("localhost", "root", "ichigoojenge") or die(mysql_error());
-mysql_select_db("ujumbe") or die(mysql_error());
+require ('connect.php');
+
 //This code runs if the form has been submitted
 
 if (isset($_POST['submit'])) {
@@ -52,39 +51,58 @@ if (!get_magic_quotes_gpc())
 else
 {
     ?>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <table border="5">
-            <tr>
-                <td>First Name:</td>
-                <td> <input type="Text"name ="fname" maxlenghth="60" </td>
-            </tr>
-            <tr>
-                <td>Last Name:</td>
-                <td> <input type="Text"name ="lname" maxlenghth="60" </td>
-            </tr>
+    <head>
+        <!--Bootstrap Files-->
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
-            <tr>
-                <td>Username:</td>
-                <td>  <input type="text" name="username" maxlength="60">  </td>
-            </tr>
+    </head>
+    <body>
 
+    <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <div class="form-group">
+            <label for="First Name" class="col-sm-2 control-label">First Name</label>
+            <div class="col-sm-4">
+                <input type="text" class ="form-control focus" name="First Name" maxlength="60">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Last Name" class="col-sm-2 control-label">Last Name</label>
+            <div class="col-sm-4">
+                <input type="text" class ="form-control focus" name="Last Name" maxlength="60">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Username" class="col-sm-2 control-label">Username</label>
+            <div class="col-sm-4">
+                <input type="text" class ="form-control focus" name="Username" maxlength="60">
+            </div>
+        </div>
             <?php
             $usertypes = "";
             ?>
-            <tr>
-                <td>Usertype ID:</td>
-                <td> <input type="int"name ="usertype_id" maxlenghth="60" </td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td>  <input type="password" name="pass" maxlength="10">  </td>
-            </tr>
-            <tr>
-                <td>Confirm Password:</td>
-                <td>  <input type="password" name="pass2" maxlength="10">  </td>
-            </tr>
-            <tr>
-                <th colspan=2><input type="submit" name="submit"  value="Register"></th></tr>
-        </table>
+        <div class="form-group">
+            <label for="Usertype ID" class="col-sm-2 control-label">Usertype ID</label>
+            <div class="col-sm-4">
+                <input type="int" class ="form-control focus" name="Usertype ID" maxlength="60">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Password" class="col-sm-2 control-label input-success">Password</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" name="password" maxlegnth="60">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Confirm Password" class="col-sm-2 control-label">Confirm Password</label>
+            <div class="col-sm-4">
+                <input type="password" class ="form-control focus" name="pass2" maxlength="60">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Register</button>
+            </div>
+        </div>
     </form>
+    </body>
 <?php  } ?>

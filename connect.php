@@ -2,7 +2,7 @@
 $mysql_host = "localhost";
 $mysql_user = "root";
 $mysql_pass = "";
-mysqli_connect("localhost", "root", "ichigoojenge","ujumbe");
+mysqli_connect("localhost", "root", "","ujumbe");
 
 
 ?>

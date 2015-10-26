@@ -10,7 +10,7 @@
 
 <?php
 // Connects to your Database
-$con=mysqli_connect("localhost","root","ichigoojenge","ujumbe");
+$con=mysqli_connect("localhost","root","","ujumbe");
 // Check connection
 if (mysqli_connect_errno())
 {
@@ -95,10 +95,25 @@ else
                     <input type="text" class ="form-control" name="event_venue" maxlength="60">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="EventTypeID" class="col-sm-2 control-label">Event Type ID</label>
-                <div class="col-sm-4">
-                    <input type="int" class ="form-control" name="event_typeID" maxlength="60">
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker2'>
+                                <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker2').datetimepicker({
+                                locale: 'ru'
+                            });
+                        });
+                    </script>
                 </div>
             </div>
             <div class="form-group">
@@ -108,9 +123,9 @@ else
                 </div>
             </div>
             <div class="form-group">
-                <label for="EventDate" class="col-sm-2 control-label">Event Date</label>
+                <label for="EventType ID" class="col-sm-2 control-label">EventType ID</label>
                 <div class="col-sm-4">
-                    <input type="int" class ="form-control" name="event_time" maxlength="60">
+                    <input type="int" class ="form-control" name="event type ID" maxlength="60">
                 </div>
             </div>
 
