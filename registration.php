@@ -56,7 +56,7 @@ else
 
     </head>
     <body>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <form class="form-horizontal" "action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
             <table border="5">
                 <tr>
                     <td>First Name:</td>

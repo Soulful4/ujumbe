@@ -59,6 +59,13 @@ else
                 </div>
             </div>
             <div class="form-group">
+                <label for="EventDate" class="col-sm-2 control-label">Event Date</label>
+                <div class="col-sm-4">
+                    <input type="datetime" class ="form-control" name="event_time" maxlength="60">
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="EventTypeID" class="col-sm-2 control-label">Event Type ID</label>
                 <div class="col-sm-4">
                     <input type="int" class ="form-control" name="event_typeID" maxlength="60">
@@ -70,12 +77,7 @@ else
                     <input type="int" class ="form-control" name="event_description" maxlength="60">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="EventDate" class="col-sm-2 control-label">Event Date</label>
-                <div class="col-sm-4">
-                    <input type="int" class ="form-control" name="event_time" maxlength="60">
-                </div>
-            </div>
+
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
