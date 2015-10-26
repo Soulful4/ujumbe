@@ -1,7 +1,12 @@
 <?php
 // Connects to your Database
-require('connect.php');
-
+//require('connect.php');
+$con=mysqli_connect("localhost","root","","ujumbe");
+// Check connection
+if (mysqli_connect_errno())
+{
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
 //if the login form is submitted
 if (isset($_POST['submit']))
 {
@@ -12,12 +17,13 @@ if(!$_POST['username'] | !$_POST['pass'])
     die('You did not fill in a required field.');
 }
 // checks it against the database
-/*if (!get_magic_quotes_gpc())
+if (!get_magic_quotes_gpc())
 {
-    $_POST['email'] = addslashes($_POST['email']);
-}*/
+    $_POST['username'] = addslashes($_POST['username']);
+}
     $check = mysqli_query($con,"SELECT * FROM users WHERE username = '".$_POST['username']."'");
-    //Gives error if user dosen't exist
+
+    //Gives error if user doesn't exist
     $check2 = mysqli_num_rows($check);
     if ($check2 == 0)
     {
@@ -25,8 +31,7 @@ if(!$_POST['username'] | !$_POST['pass'])
     }
     while($info = mysqli_fetch_array( $check ))
     {
-        var_dump($check);
-        exit;
+        //removes the backslashes
         $_POST['pass'] = stripslashes($_POST['pass']);
         $info['password'] = stripslashes($info['password']);
         $_POST['pass'] = md5($_POST['pass']);
@@ -38,13 +43,13 @@ if(!$_POST['username'] | !$_POST['pass'])
         else
         {
         // if login is ok then we add a cookie
-        $_POST['username'] = stripslashes($_POST['username']);
+        //$_POST['username'] = stripslashes($_POST['username']);
 
-            $hour = time() + 3600;
+          //  $hour = time() + 3600;
 //            setcookie(ID_my_site, $_POST['username'], $hour);
 //            setcookie(Key_my_site, $_POST['pass'], $hour);
 //            //then redirect them to the members area
-            header("Location: table.php");
+            header("Location: events.php");
         }
     }
 }
