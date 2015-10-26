@@ -1,0 +1,23 @@
+
+    <html>
+    <head>
+    </head>
+    <body>
+    <h3> EVENTS </h3>
+    <table>
+        <?php
+$data = "select * from users";
+$users = mysql_query($data);
+echo "<pre>";
+        print_r($users);exit;
+foreach ($users as $user);
+echo "<tr><td>".$user."</td></tr>";
+        endforeach;
+        ?>
+
+
+</table>
+    </body>
+
+
+    </html>

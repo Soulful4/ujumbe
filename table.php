@@ -1,7 +1,5 @@
 <?php
 // Connects to your Database
-
-//require('connect.php');
 $con=mysqli_connect("localhost","root","","ujumbe");
 // Check connection
 if (mysqli_connect_errno())
@@ -20,8 +18,6 @@ if (isset($_POST['submit'])) {
     {
         die('Sorry, the Event Name '.$_POST['event_name'].' is already in use.');
     }
-
-
     // insert it into the database
     $insert = "INSERT INTO events (event_name,event_venue,event_typeID,event_time,event_description)  VALUES ('".$_POST['event_name']."','".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."')";
     $add_member = mysqli_query($con, $insert);
@@ -43,52 +39,61 @@ else
 
     </head>
     <body>
-        <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-<!--            <div class="form-group">-->
-<!--                <label for="EventID" class="col-sm-2 control-label">Event ID</label>-->
-<!--                <div class="col-sm-4">-->
-<!--                    <input type="int" class ="form-control" name="event_id" maxlength="60">-->
-<!--                </div>-->
-<!--            </div>-->
-            <div class="form-group">
-                <label for="EventName" class="col-sm-2 control-label">Event Name</label>
-                <div class="col-sm-4">
-                    <input type="text" class ="form-control" name="event_name" maxlength="60">
-                </div>
+    <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <div class="form-group">
+            <label for="EventName" class="col-sm-2 control-label">Event Name</label>
+            <div class="col-sm-4">
+                <input type="text" class ="form-control" name="event_name" maxlength="60">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="EventVenue" class="col-sm-2 control-label">Event Venue</label>
-                <div class="col-sm-4">
-                    <input type="text" class ="form-control" name="event_venue" maxlength="60">
-                </div>
+        <div class="form-group">
+            <label for="EventVenue" class="col-sm-2 control-label">Event Venue</label>
+            <div class="col-sm-4">
+                <input type="text" class ="form-control" name="event_venue" maxlength="60">
             </div>
-            <div class="form-group">
-                <label for="EventTypeID" class="col-sm-2 control-label">Event Type ID</label>
-                <div class="col-sm-4">
-                    <input type="int" class ="form-control" name="event_typeID" maxlength="60">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class='col-sm-6'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker2'>
+                            <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                        </div>
+                    </div>
                 </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker2').datetimepicker({
+                            locale: 'ru'
+                        });
+                    });
+                </script>
             </div>
-            <div class="form-group">
-                <label for="EventDescription" class="col-sm-2 control-label">Event Description</label>
-                <div class="col-sm-4">
-                    <input type="int" class ="form-control" name="event_description" maxlength="60">
-                </div>
+        </div>
+        <div class="form-group">
+            <label for="EventDescription" class="col-sm-2 control-label">Event Description</label>
+            <div class="col-sm-4">
+                <input type="int" class ="form-control" name="event_description" maxlength="60">
             </div>
-            <div class="form-group">
-                <label for="EventDate" class="col-sm-2 control-label">Event Date</label>
-                <div class="col-sm-4">
-                    <input type="int" class ="form-control" name="event_time" maxlength="60">
-                </div>
+        </div>
+        <div class="form-group">
+            <label for="EventType ID" class="col-sm-2 control-label">EventType ID</label>
+            <div class="col-sm-4">
+                <input type="int" class ="form-control" name="event type ID" maxlength="60">
             </div>
+        </div>
 
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" name="submit" class="btn btn-default">Register</button>
-                </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" name="submit" class="btn btn-default">Register</button>
             </div>
+        </div>
 
-        </form>
+    </form>
     </body>
 <?php  } ?>
 
