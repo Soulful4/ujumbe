@@ -1,4 +1,4 @@
-<?php
+ +<?php
 // Connects to your Database
 //require('connect.php');
 $con=mysqli_connect("localhost","root","","ujumbe");
@@ -9,7 +9,7 @@ if (mysqli_connect_errno())
 }
 if (isset($_POST['submit'])) {
 //This makes sure they did not leave any fields blank
-if (!$_POST['username'] | !$_POST['pass'] | !$_POST['pass2'] )
+if (!$_POST['username'] | !$_POST['password']  )
 {
     die('You did not complete all of the required fields');
 }
@@ -29,19 +29,14 @@ if (!get_magic_quotes_gpc())
         die('Sorry, the username '.$_POST['username'].' is already in use.');
     }
     //  this makes sure both passwords entered match
-    if ($_POST['pass'] != $_POST['pass2'])
+    if ($_POST['password'] != $_POST['password2'])
     {
         die('Your passwords did not match. ');
     }
     // here we encrypt the password and add slashes if needed
-    $_POST['pass'] = md5($_POST['pass']);
-    if (!get_magic_quotes_gpc())
-    {
-        $_POST['pass'] = addslashes($_POST['pass']);
-        $_POST['username'] = addslashes($_POST['username']);
-    }
+    $password = md5($_POST['password']);
     // now we insert it into the database
-    $insert = "INSERT INTO users ( username, password, fname, lname, usertype_id)  VALUES ('".$_POST['username']."', '".$_POST['pass']."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";
+    $insert = "INSERT INTO users ( username, password, fname, lname, usertype_id)  VALUES ('".$_POST['username']."', '".$password."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";
 
     $add_member = mysqli_query($con,$insert);
 
@@ -67,28 +62,36 @@ else
         <div class="form-group">
             <label for="First Name" class="col-sm-2 control-label">First Name</label>
             <div class="col-sm-4">
-                <input type="text" class ="form-control focus" name="First Name" maxlength="60">
+                <input type="text" class ="form-control focus" name="fname" maxlength="60">
             </div>
         </div>
         <div class="form-group">
             <label for="Last Name" class="col-sm-2 control-label">Last Name</label>
             <div class="col-sm-4">
-                <input type="text" class ="form-control focus" name="Last Name" maxlength="60">
+                <input type="text" class ="form-control focus" name="lname" maxlength="60">
             </div>
         </div>
         <div class="form-group">
             <label for="Username" class="col-sm-2 control-label">Username</label>
             <div class="col-sm-4">
-                <input type="text" class ="form-control focus" name="Username" maxlength="60">
+                <input type="text" class ="form-control focus" name="username" maxlength="60">
             </div>
         </div>
             <?php
             $usertypes = "";
             ?>
         <div class="form-group">
-            <label for="Usertype ID" class="col-sm-2 control-label">Usertype ID</label>
+            <label for="Usertype ID" class="col-sm-2 control-label">Usertype:</label>
             <div class="col-sm-4">
-                <input type="int" class ="form-control focus" name="Usertype ID" maxlength="60">
+                <select name ="usertype_id">
+                    <?php
+                    $usertypes = mysqli_query($con, "Select * from usertypes");
+                    while ($types = mysqli_fetch_array ($usertypes)){
+                        echo "<option value =".$types['id']."  >".$types['description']."</option>";
+                    }
+
+                    ?>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -100,7 +103,7 @@ else
         <div class="form-group">
             <label for="Confirm Password" class="col-sm-2 control-label">Confirm Password</label>
             <div class="col-sm-4">
-                <input type="password" class ="form-control focus" name="pass2" maxlength="60">
+                <input type="password" class ="form-control focus" name="password2" maxlength="60">
             </div>
         </div>
         <div class="form-group">

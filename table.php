@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
         die('Sorry, the Event Name '.$_POST['event_name'].' is already in use.');
     }
     // insert it into the database
-    $insert = "INSERT INTO events (event_name,event_venue,event_typeID,event_time,event_description)  VALUES ('".$_POST['event_name']."','".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."')";
+    $insert = "INSERT INTO events (event_name,event_venue,event_typeID,event_date,event_time,event_description)  VALUES ('".$_POST['event_name']."','".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."')";
     $add_member = mysqli_query($con, $insert);
 
     ?>
@@ -53,27 +53,21 @@ else
                 <input type="text" class ="form-control" name="event_venue" maxlength="60">
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class='col-sm-6'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker2'>
-                            <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                        </div>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    $(function () {
-                        $('#datetimepicker2').datetimepicker({
-                            locale: 'ru'
-                        });
-                    });
-                </script>
+
+        <div class="form-group">
+            <label for="Event time" class="col-sm-2 control-label">Event Date</label>
+            <div class="col-sm-4">
+                <input type="datetime" class ="form-control" name="event_date" maxlength="60">
             </div>
         </div>
+
+        <div class="form-group">
+            <label for="Event time" class="col-sm-2 control-label">Event Time</label>
+            <div class="col-sm-4">
+                <input type="datetime" class ="form-control" name="event_time" maxlength="60">
+            </div>
+        </div>
+
         <div class="form-group">
             <label for="EventDescription" class="col-sm-2 control-label">Event Description</label>
             <div class="col-sm-4">
