@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e35fd47f-2175-4063-bc4b-c3fec2a3f128" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/connect.php" afterPath="$PROJECT_DIR$/connect.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registration.php" afterPath="$PROJECT_DIR$/registration.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/table.php" afterPath="$PROJECT_DIR$/table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ujumbe.iws" />
@@ -705,12 +701,12 @@
       <workItem from="1445261191904" duration="1708000" />
       <workItem from="1445497801463" duration="33000" />
       <workItem from="1445501307371" duration="2868000" />
-      <workItem from="1445602727239" duration="2914000" />
+      <workItem from="1445602727239" duration="3043000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10101000" />
+    <option name="totallyTimeSpent" value="10230000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
