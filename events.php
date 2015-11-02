@@ -14,7 +14,6 @@ if (mysqli_connect_errno())
 
 ?>
 
-?>
 <html>
 <head>
 
@@ -24,21 +23,21 @@ if (mysqli_connect_errno())
 
 <table>
     <thead>
-    <td>Event 1</td>
-    <td>Event 2</td>
-    <td>Event 3</td>
+    <td>Event id</td>
+    <td>Event Name</td>
+    <td>Event Description</td>
     </thead>
     <tbody>
     <?php
-    $data = "Select * from users";
+    $data = "Select * from events";
     $events = mysqli_query($con,$data);
 
     foreach($events as $event):
 
         echo "<tr>";
-        echo "<td>".$event['fname']."</td>";
-        echo "<td>".$event['lname']."</td>";
-        echo "<td>".$event['username']."</td>";
+        echo "<td>".$event['event_id']."</td>";
+        echo "<td>".$event['event_name']."</td>";
+        echo "<td>".$event['event_description']."</td>";
         echo"</tr>";
 
     endforeach;
