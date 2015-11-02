@@ -1,7 +1,7 @@
 <?php
 //require('connect.php')
 
-$con=mysqli_connect("localhost","root","ichigoojenge","ujumbe");
+$con=mysqli_connect("localhost","root","","ujumbe");
 // Check connection
 if (mysqli_connect_errno())
 {

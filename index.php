@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
 // Connects to your Database
-$con=mysqli_connect("localhost","root","ichigoojenge","ujumbe");
+$con=mysqli_connect("localhost","root","","ujumbe");
 // Check connection
 if (mysqli_connect_errno()) {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
