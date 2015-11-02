@@ -1,4 +1,4 @@
- +<?php
+ <?php
 // Connects to your Database
 //require('connect.php');
 $con=mysqli_connect("localhost","root","ichigoojenge","ujumbe");
@@ -79,7 +79,7 @@ else
                     <?php
                     $usertypes = mysqli_query($con, "Select * from usertypes");
                     while ($types = mysqli_fetch_array ($usertypes)){
-                        echo "<option value =".$types['id']."  >".$types['description']."</option>";
+                        echo "<option value =".$types['description']."  >".$types['description']."</option>";
                     }
 
                     ?>
