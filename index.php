@@ -15,32 +15,28 @@ if (isset($_POST['submit']))
 
     $check = "SELECT * FROM users WHERE username = '$username' and password='$password'";
     $query = mysqli_query($con,$check);
-    $content = mysqli_num_rows($query);
+    $content = mysqli_fetch_assoc($query);
+
+//    echo "<pre>";
+//    print_r($content);
+//    exit;
+
+    if($content > 0 ){
 
 
-    while(mysqli_fetch_row($query)){
+        if ($content['usertype_id'] == "Student" ) {
 
-    }
-
-    $content=mysqli_fetch_row($query);
-   // echo "<pre>";print_r($content);exit;
-
-   // var_dump($query);exit;
-
-
-
-    if(@mysqli_num_rows($check) > 0 ){
-
-        if ($info['usertype_id'] == 1 ) {
 
             header("Location: events.php");
 
         }
-        elseif ($info['usertype_id'] == 3) {
+        elseif ($content['usertype_id'] == "Administrator") {
+
 
             header("Location: table.php");
         }
-        elseif ($info['usertype_id'] == 2) {
+        elseif ($content['usertype_id'] == "Staff") {
+
 
             header("Location: events.php");
         }
