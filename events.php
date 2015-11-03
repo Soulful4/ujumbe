@@ -8,9 +8,6 @@ if (mysqli_connect_errno())
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-// Perform queries
-//mysqli_query($con,"SELECT * FROM Persons");
-
 
 ?>
 
@@ -36,7 +33,7 @@ if (mysqli_connect_errno())
 
         echo "<tr>";
         echo "<td>".$event['event_id']."</td>";
-        echo "<td>".$event['event_name']."</td>";
+        echo "<td>".$event['event_venue']."</td>";
         echo "<td>".$event['event_description']."</td>";
         echo"</tr>";
 

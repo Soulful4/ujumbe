@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
         die('Sorry, the Event Name '.$_POST['event_name'].' is already in use.');
     }
     // insert it into the database
-    $insert = "INSERT INTO events (event_name,event_venue,event_typeID,event_time,event_description)  VALUES ('".$_POST['event_name']."','".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."')";
+    $insert = "INSERT INTO events (event_name,event_venue,event_typeID,event_date,event_time,event_description)  VALUES ('".$_POST['event_name']."','".$_POST['event_venue']."', '".$_POST['event_typeID']."', '".$_POST['event_time']."', '".$_POST['event_description']."')";
     $add_member = mysqli_query($con, $insert);
 
     ?>
@@ -36,17 +36,9 @@ else
     <head>
         <!--Bootstrap Files-->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <style type="text/css">
-            body {
-                background: #eee} /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
-        </style>
 
     </head>
     <body>
-    <center>
-        <h1> Registration Form</h1>
-    </center>
-    <div  style="margin-top: 200px; margin-bottom: 100px; margin-left: 360px; margin-right: 100px ">
     <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="form-group">
             <label for="EventName" class="col-sm-2 control-label">Event Name</label>
@@ -61,8 +53,16 @@ else
                 <input type="text" class ="form-control" name="event_venue" maxlength="60">
             </div>
         </div>
+
         <div class="form-group">
-            <label for="Event Date" class="col-sm-2 control-label">Event Date</label>
+            <label for="Event time" class="col-sm-2 control-label">Event Date</label>
+            <div class="col-sm-4">
+                <input type="datetime" class ="form-control" name="event_date" maxlength="60">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Event time" class="col-sm-2 control-label">Event Time</label>
             <div class="col-sm-4">
                 <input type="datetime" class ="form-control" name="event_time" maxlength="60">
             </div>

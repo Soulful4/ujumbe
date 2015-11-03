@@ -1,24 +1,20 @@
+<<<<<<< HEAD
 5<?php
+=======
+ <?php
+>>>>>>> 9aebb50b2dda8247e14a2757b01acf636880451e
 // Connects to your Database
 //require('connect.php');
-$con=mysqli_connect("localhost","root","","ujumbe");
+$con=mysqli_connect("localhost","root","ichigoojenge","ujumbe");
 // Check connection
 if (mysqli_connect_errno())
 {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 if (isset($_POST['submit'])) {
-//This makes sure they did not leave any fields blank
-if (!$_POST['username'] | !$_POST['pass'] | !$_POST['pass2'] )
-{
-    die('You did not complete all of the required fields');
-}
-// checks if the username is in use
-if (!get_magic_quotes_gpc())
-{
-    $_POST['username'] = addslashes($_POST['username']);
-}
+
     $usercheck = $_POST['username'];
+    $password = md5($_POST['password']);
 
     $check = mysqli_query($con,"SELECT username FROM users WHERE username = '$usercheck'");
     $check2 = mysqli_num_rows($check);
@@ -29,19 +25,17 @@ if (!get_magic_quotes_gpc())
         die('Sorry, the username '.$_POST['username'].' is already in use.');
     }
     //  this makes sure both passwords entered match
-    if ($_POST['pass'] != $_POST['pass2'])
+    if ($_POST['password'] != $_POST['password2'])
     {
         die('Your passwords did not match. ');
     }
     // here we encrypt the password and add slashes if needed
-    $_POST['pass'] = md5($_POST['pass']);
-    if (!get_magic_quotes_gpc())
-    {
-        $_POST['pass'] = addslashes($_POST['pass']);
-        $_POST['username'] = addslashes($_POST['username']);
-    }
+
+
+
+   // echo $_POST['password'];exit;
     // now we insert it into the database
-    $insert = "INSERT INTO users ( username, password, fname, lname, usertype_id)  VALUES ('".$_POST['username']."', '".$_POST['pass']."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";
+    $insert = "INSERT INTO users ( username, password, fname, lname, usertype_id)  VALUES ('".$_POST['username']."', '".$password."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";
 
     $add_member = mysqli_query($con,$insert);
 
@@ -74,28 +68,31 @@ else
     <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="form-group">
             <label for="First Name" class="col-sm-2 control-label">First Name</label>
+<<<<<<< HEAD
             <div class="col-sm-4 ">
                 <input type="text" class ="form-control focus" name="First Name" maxlength="60">
+=======
+            <div class="col-sm-4">
+                <input type="text" class ="form-control focus" name="fname" maxlength="60" required>
+>>>>>>> 9aebb50b2dda8247e14a2757b01acf636880451e
             </div>
         </div>
         <div class="form-group">
             <label for="Last Name" class="col-sm-2 control-label">Last Name</label>
             <div class="col-sm-4">
-                <input type="text" class ="form-control focus" name="Last Name" maxlength="60">
+                <input type="text" class ="form-control focus" name="lname" maxlength="60" required>
             </div>
         </div>
         <div class="form-group">
             <label for="Username" class="col-sm-2 control-label">Username</label>
             <div class="col-sm-4">
-                <input type="text" class ="form-control focus" name="Username" maxlength="60">
+                <input type="text" class ="form-control focus" name="username" maxlength="60" required>
             </div>
         </div>
-            <?php
-            $usertypes = "";
-            ?>
         <div class="form-group">
-            <label for="Usertype ID" class="col-sm-2 control-label">Usertype ID</label>
+            <label for="Usertype ID" class="col-sm-2 control-label">Usertype:</label>
             <div class="col-sm-4">
+<<<<<<< HEAD
                 <select name = "usertype_id">
                 <?php
                 $usertypes = mysqli_query($con, "Select * from usertypes");
@@ -103,19 +100,29 @@ else
                         echo "<option value =".$types['id']." >".$types['description']."</option>";
                 }
                 ?>
+=======
+                <select name ="usertype_id">
+                    <?php
+                    $usertypes = mysqli_query($con, "Select * from usertypes");
+                    while ($types = mysqli_fetch_array ($usertypes)){
+                        echo "<option value =".$types['description']."  >".$types['description']."</option>";
+                    }
+
+                    ?>
+>>>>>>> 9aebb50b2dda8247e14a2757b01acf636880451e
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label for="Password" class="col-sm-2 control-label input-success">Password</label>
             <div class="col-sm-4">
-                <input type="password" class="form-control" name="password" maxlegnth="60">
+                <input type="password" class="form-control" name="password" maxlength="60" required>
             </div>
         </div>
         <div class="form-group">
             <label for="Confirm Password" class="col-sm-2 control-label">Confirm Password</label>
             <div class="col-sm-4">
-                <input type="password" class ="form-control focus" name="pass2" maxlength="60">
+                <input type="password" class ="form-control focus" name="password2" maxlength="60" required>
             </div>
         </div>
         <div class="form-group">

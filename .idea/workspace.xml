@@ -5,12 +5,15 @@
     <list default="true" id="e35fd47f-2175-4063-bc4b-c3fec2a3f128" name="Default" comment="" />
 =======
     <list default="true" id="e35fd47f-2175-4063-bc4b-c3fec2a3f128" name="Default" comment="">
+<<<<<<< HEAD
+=======
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/connect.php" afterPath="$PROJECT_DIR$/connect.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registration.php" afterPath="$PROJECT_DIR$/registration.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/table.php" afterPath="$PROJECT_DIR$/table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ujumbe.iml" afterPath="$PROJECT_DIR$/ujumbe.iml" />
+>>>>>>> e01658aafae766daf0f7a826606a2af0dfc363c9
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
 >>>>>>> e011aa650f9d0597c354962723d4b744514c6c50
@@ -378,12 +381,23 @@
       <updated>1444749118028</updated>
       <workItem from="1444749124051" duration="1288000" />
       <workItem from="1444974661624" duration="1290000" />
+<<<<<<< HEAD
+      <workItem from="1445261191904" duration="1708000" />
+      <workItem from="1445497801463" duration="33000" />
+      <workItem from="1445501307371" duration="2868000" />
+      <workItem from="1445602727239" duration="3043000" />
+=======
       <workItem from="1445261191904" duration="1601000" />
+>>>>>>> e01658aafae766daf0f7a826606a2af0dfc363c9
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="10230000" />
+=======
     <option name="totallyTimeSpent" value="4179000" />
+>>>>>>> e01658aafae766daf0f7a826606a2af0dfc363c9
   </component>
   <component name="ToolWindowManager">
 <<<<<<< HEAD
