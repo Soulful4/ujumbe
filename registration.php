@@ -1,11 +1,9 @@
-<<<<<<< HEAD
+
 5<?php
-=======
- <?php
->>>>>>> 9aebb50b2dda8247e14a2757b01acf636880451e
+
 // Connects to your Database
 //require('connect.php');
-$con=mysqli_connect("localhost","root","ichigoojenge","ujumbe");
+$con=mysqli_connect("localhost","root","","ujumbe");
 // Check connection
 if (mysqli_connect_errno())
 {
@@ -68,13 +66,11 @@ else
     <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="form-group">
             <label for="First Name" class="col-sm-2 control-label">First Name</label>
-<<<<<<< HEAD
+
             <div class="col-sm-4 ">
                 <input type="text" class ="form-control focus" name="First Name" maxlength="60">
-=======
             <div class="col-sm-4">
                 <input type="text" class ="form-control focus" name="fname" maxlength="60" required>
->>>>>>> 9aebb50b2dda8247e14a2757b01acf636880451e
             </div>
         </div>
         <div class="form-group">
@@ -92,7 +88,7 @@ else
         <div class="form-group">
             <label for="Usertype ID" class="col-sm-2 control-label">Usertype:</label>
             <div class="col-sm-4">
-<<<<<<< HEAD
+
                 <select name = "usertype_id">
                 <?php
                 $usertypes = mysqli_query($con, "Select * from usertypes");
@@ -100,7 +96,7 @@ else
                         echo "<option value =".$types['id']." >".$types['description']."</option>";
                 }
                 ?>
-=======
+
                 <select name ="usertype_id">
                     <?php
                     $usertypes = mysqli_query($con, "Select * from usertypes");
@@ -109,7 +105,6 @@ else
                     }
 
                     ?>
->>>>>>> 9aebb50b2dda8247e14a2757b01acf636880451e
                 </select>
             </div>
         </div>
