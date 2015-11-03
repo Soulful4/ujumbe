@@ -36,9 +36,17 @@ else
     <head>
         <!--Bootstrap Files-->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <style type="text/css">
+            body {
+                background: #eee} /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+        </style>
 
     </head>
     <body>
+    <center>
+        <h1> Registration Form</h1>
+    </center>
+    <div  style="margin-top: 200px; margin-bottom: 100px; margin-left: 360px; margin-right: 100px ">
     <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="form-group">
             <label for="EventName" class="col-sm-2 control-label">Event Name</label>
@@ -53,27 +61,13 @@ else
                 <input type="text" class ="form-control" name="event_venue" maxlength="60">
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class='col-sm-6'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker2'>
-                            <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                        </div>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    $(function () {
-                        $('#datetimepicker2').datetimepicker({
-                            locale: 'ru'
-                        });
-                    });
-                </script>
+        <div class="form-group">
+            <label for="Event Date" class="col-sm-2 control-label">Event Date</label>
+            <div class="col-sm-4">
+                <input type="datetime" class ="form-control" name="event_time" maxlength="60">
             </div>
         </div>
+
         <div class="form-group">
             <label for="EventDescription" class="col-sm-2 control-label">Event Description</label>
             <div class="col-sm-4">

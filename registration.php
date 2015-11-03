@@ -1,4 +1,4 @@
-<?php
+5<?php
 // Connects to your Database
 //require('connect.php');
 $con=mysqli_connect("localhost","root","","ujumbe");
@@ -59,14 +59,22 @@ else
     <head>
         <!--Bootstrap Files-->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <style type="text/css">
+            body {
+                background:#eee} /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+        </style>
 
     </head>
     <body>
-
+<div class ="container">
+    <center>
+    <h1> Registration Form</h1>
+        </center>
+    <div  style="margin-top: 200px; margin-bottom: 100px; margin-left: 360px; margin-right: 100px ">
     <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="form-group">
             <label for="First Name" class="col-sm-2 control-label">First Name</label>
-            <div class="col-sm-4">
+            <div class="col-sm-4 ">
                 <input type="text" class ="form-control focus" name="First Name" maxlength="60">
             </div>
         </div>
@@ -88,7 +96,14 @@ else
         <div class="form-group">
             <label for="Usertype ID" class="col-sm-2 control-label">Usertype ID</label>
             <div class="col-sm-4">
-                <input type="int" class ="form-control focus" name="Usertype ID" maxlength="60">
+                <select name = "usertype_id">
+                <?php
+                $usertypes = mysqli_query($con, "Select * from usertypes");
+                while ($types = mysqli_fetch_array($usertypes)){
+                        echo "<option value =".$types['id']." >".$types['description']."</option>";
+                }
+                ?>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -109,5 +124,7 @@ else
             </div>
         </div>
     </form>
+        </div>
+</div>
     </body>
 <?php  } ?>

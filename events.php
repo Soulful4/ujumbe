@@ -1,5 +1,5 @@
 <?php
-//require('connect.php')
+require('connect.php');
 
 $con=mysqli_connect("localhost","root","","ujumbe");
 // Check connection

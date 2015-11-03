@@ -61,11 +61,15 @@ else
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <style type="text/css">
             body {
-                background:#ced2d8} /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+
+            }
         </style>
 
     </head>
     <body>
+    <center>
+    <h1> Log in Form</h1>
+        </center>
     <div  style="margin-top: 200px; margin-bottom: 100px; margin-left: 360px; margin-right: 100px ">
         <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 
