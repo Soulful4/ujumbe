@@ -1,5 +1,5 @@
 
-5<?php
+<?php
 
 // Connects to your Database
 //require('connect.php');
