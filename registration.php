@@ -1,6 +1,4 @@
-
 <?php
-
 // Connects to your Database
 //require('connect.php');
 $con=mysqli_connect("localhost","root","","ujumbe");
@@ -13,10 +11,8 @@ if (isset($_POST['submit'])) {
 
     $usercheck = $_POST['username'];
     $password = md5($_POST['password']);
-
     $check = mysqli_query($con,"SELECT username FROM users WHERE username = '$usercheck'");
     $check2 = mysqli_num_rows($check);
-
     //if the name exists it gives an error
     if ($check2 != 0)
     {
@@ -28,18 +24,14 @@ if (isset($_POST['submit'])) {
         die('Your passwords did not match. ');
     }
     // here we encrypt the password and add slashes if needed
-
-
-
-   // echo $_POST['password'];exit;
+    // echo $_POST['password'];exit;
     // now we insert it into the database
     $insert = "INSERT INTO users ( username, password, fname, lname, usertype_id)  VALUES ('".$_POST['username']."', '".$password."','".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['usertype_id']."')";
 
     $add_member = mysqli_query($con,$insert);
-
     ?>
     <h1>Registered</h1>
-    <p>Thank you, you have registered -<a href =  index.php> you may now login</a>.
+    <p>Thank you, you have registered<a href =  index.php> you may now login</a>.
     </p>
 
 
@@ -51,24 +43,25 @@ else
     <head>
         <!--Bootstrap Files-->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <style type="text/css">
+        <style>
             body {
-                background:#eee} /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+                background-image: url("blah.jpg");
+                color:white;
+
+            }
+
         </style>
+
 
     </head>
     <body>
-<div class ="container">
-    <center>
-    <h1> Registration Form</h1>
-        </center>
-    <div  style="margin-top: 200px; margin-bottom: 100px; margin-left: 360px; margin-right: 100px ">
+
+
+    <center> <h1>User Registration</h1> </center>
+    <div  style="margin-top: 150px; margin-bottom: 100px; margin-left: 400px; margin-right: 100px ">
     <form class ="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="form-group">
-            <label for="First Name" class="col-sm-2 control-label">First Name</label>
-
-            <div class="col-sm-4 ">
-                <input type="text" class ="form-control focus" name="First Name" maxlength="60">
+            <label for="First Name"  class="col-sm-2 control-label">First Name</label>
             <div class="col-sm-4">
                 <input type="text" class ="form-control focus" name="fname" maxlength="60" required>
             </div>
@@ -86,30 +79,20 @@ else
             </div>
         </div>
         <div class="form-group">
-            <label for="Usertype ID" class="col-sm-2 control-label">Usertype:</label>
+            <label for="Usertype ID"  class="col-sm-2 control-label">Usertype</label>
             <div class="col-sm-4">
-
-                <select name = "usertype_id">
-                <?php
-                $usertypes = mysqli_query($con, "Select * from usertypes");
-                while ($types = mysqli_fetch_array($usertypes)){
-                        echo "<option value =".$types['id']." >".$types['description']."</option>";
-                }
-                ?>
-
-                <select name ="usertype_id">
+                <select name ="usertype_id" style="color:black;">
                     <?php
                     $usertypes = mysqli_query($con, "Select * from usertypes");
                     while ($types = mysqli_fetch_array ($usertypes)){
                         echo "<option value =".$types['description']."  >".$types['description']."</option>";
                     }
-
                     ?>
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label for="Password" class="col-sm-2 control-label input-success">Password</label>
+            <label for="Password"  class="col-sm-2 control-label input-success">Password</label>
             <div class="col-sm-4">
                 <input type="password" class="form-control" name="password" maxlength="60" required>
             </div>
@@ -122,11 +105,9 @@ else
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" name="submit" class="btn btn-default">Register</button>
+                <button type="submit" name="submit" class="btn btn-primary btn-lg">Register</button>
             </div>
         </div>
     </form>
-        </div>
-</div>
     </body>
 <?php  } ?>

@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL & ~E_NOTICE);
+
 // Connects to your Database
 $con=mysqli_connect("localhost","root","","ujumbe");
 // Check connection
@@ -56,23 +56,22 @@ if (isset($_POST['submit']))
         <!--Bootstrap Files-->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <script src="js/jquery-1.11.3.min.js"></script>
-        <style type="text/css">
+        <style>
             body {
-
+                background-image: url("blah.jpg");
+                color:white;
             }
         </style>
+
 
     </head>
     <body>
     <center>
-    <h1> Log in Form</h1>
+    <h1> Log in </h1>
         </center>
-    <div  style="margin-top: 200px; margin-bottom: 100px; margin-left: 360px; margin-right: 100px ">
-        <?php if($msg!='') { ?>
-        <div class="alert-warning">
-                <?php echo $msg; ?>
-        </div>
+
     <?php } ?>
+    <div  style="margin-top: 200px; margin-bottom: 100px; margin-left: 400px; margin-right: 100px ">
         <form class="form-horizontal" id="login" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!-- -->
 
             <div class="form-group">
@@ -90,7 +89,7 @@ if (isset($_POST['submit']))
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button id="form_submit" class="btn btn-default" name="submit">Login</button>
+                    <button id="form_submit" class="btn btn-success" name="submit">Login</button>
                 </div>
             </div>
 
@@ -98,4 +97,4 @@ if (isset($_POST['submit']))
 
     </div>
     </body>
-<?php } ?>
+<?php  ?>
